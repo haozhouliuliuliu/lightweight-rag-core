@@ -21,7 +21,7 @@
 
 ## 3. 本地数据
 
-- `data/docs`：虚构源文档，22 份，SHA-256 与项目一 manifest 一致；
+- `data/docs`：虚构源文档，22 份，SHA-256 与enterprise-rag-kb manifest 一致；
 - `data/chroma`：本地 Chroma 持久化目录，已 gitignore；
 - `data/chroma` 可删除后重建，不包含密钥；
 - 生命周期测试使用 `tests/fixtures` 的临时文本，测试结束后从知识库删除。

@@ -1,4 +1,4 @@
-# 架构与数据流向（M1–M5）
+# 架构与数据流向
 
 ## 1. 总体架构
 
@@ -51,8 +51,8 @@ flowchart LR
 | `indexer.py` | 全量/单文档重建，count 校验 |
 | `retriever.py` | 问题向量 → Top-K；保留来源元数据 |
 | `answer.py` | 上下文组装、qwen-plus、`[n]` 引用解析、拒答判断 |
-| `evaluation.py` | 项目一 30 题判定规则与统计 |
-| `scripts/*.py` | build_index / manage_docs / ask / evaluate / M2–M4 证据 |
+| `evaluation.py` | enterprise-rag-kb 30 题判定规则与统计 |
+| `scripts/*.py` | build_index / manage_docs / ask / evaluate / 验证脚本 |
 
 ## 3. 数据模型
 
@@ -110,7 +110,7 @@ flowchart LR
 
 ## 7. 评测
 
-- 30 题与项目一原样一致；
+- 30 题与enterprise-rag-kb原样一致；
 - Top-5 检索只看前 5 条；
 - 引用有效性只认回答中真实 `[n]` 映射；
 - 无答案题只统计拒答，不混入检索分母；
