@@ -1,0 +1,339 @@
+{
+  "version": "1.0-full",
+  "description": "22 份虚构资料入库后的 30 题全量验收集：25 道可回答 + 5 道无答案。",
+  "workspace_hint": "enterprise-rag-kb",
+  "questions": [
+    {
+      "id": "F01",
+      "question": "X-100 便携式扭矩校验仪产品说明书中，额定功率是多少？",
+      "type": "直接查询/产品参数",
+      "mode": "query",
+      "expected": "5 W，来源 X-100 产品说明书",
+      "judge": {
+        "must_include_all": ["5 W"],
+        "expected_sources": ["X-100 便携式扭矩校验仪产品说明书"]
+      }
+    },
+    {
+      "id": "F02",
+      "question": "X-100S 便携式扭矩校验仪产品说明书中，防护等级和通信方式是什么？",
+      "type": "直接查询/产品参数",
+      "mode": "query",
+      "expected": "IP67；Wi-Fi 6 + Bluetooth 5.2（支持 MQTT）",
+      "judge": {
+        "must_include_all": ["IP67", "Wi-Fi 6"],
+        "expected_sources": ["X-100S 便携式扭矩校验仪产品说明书"]
+      }
+    },
+    {
+      "id": "F03",
+      "question": "X-200 台式多通道扭矩校验系统的测量范围和通道数是多少？",
+      "type": "直接查询/产品参数",
+      "mode": "query",
+      "expected": "5–2000 N·m；4 个通道",
+      "judge": {
+        "must_include_all": ["5–2000", "4"],
+        "expected_sources": ["X-200 台式多通道扭矩校验系统产品说明书"]
+      }
+    },
+    {
+      "id": "F04",
+      "question": "M-3 半自动扭矩装配台操作手册中，默认锁付扭矩和转速是多少？",
+      "type": "直接查询/设备参数",
+      "mode": "query",
+      "expected": "8.0 N·m；300 rpm",
+      "judge": {
+        "must_include_all": ["8.0", "300"],
+        "expected_sources": ["M-3 半自动扭矩装配台操作手册"]
+      }
+    },
+    {
+      "id": "F05",
+      "question": "M-3 Pro 全自动扭矩装配台操作手册中，单件节拍是多少？",
+      "type": "直接查询/设备参数",
+      "mode": "query",
+      "expected": "≤ 8 s",
+      "judge": {
+        "must_include_all": ["8 s"],
+        "expected_sources": ["M-3 Pro 全自动扭矩装配台操作手册"]
+      }
+    },
+    {
+      "id": "F06",
+      "question": "X-100 系列包装与运输规范中，仓库堆码层数和跌落高度要求是什么？",
+      "type": "直接查询/包装参数",
+      "mode": "query",
+      "expected": "不超过 5 层；1.0 m 六面跌落",
+      "judge": {
+        "must_include_all": ["5 层", "1.0 m"],
+        "expected_sources": ["X-100 系列包装与运输规范"]
+      }
+    },
+    {
+      "id": "F07",
+      "question": "X-100 出厂检验报告样例中，绝缘电阻和耐压实测值是多少？",
+      "type": "直接查询/检验报告",
+      "mode": "query",
+      "expected": "620 MΩ；2000 VAC / 60 s",
+      "judge": {
+        "must_include_all": ["620", "2000"],
+        "expected_sources": ["X-100 出厂检验报告样例"]
+      }
+    },
+    {
+      "id": "F08",
+      "question": "X-200 出厂检验报告样例中，CH1 和 CH2 的扭矩示值误差是多少？",
+      "type": "直接查询/检验报告",
+      "mode": "query",
+      "expected": "CH1 +0.08% FS；CH2 +0.06% FS",
+      "judge": {
+        "must_include_all": ["0.08", "0.06"],
+        "expected_sources": ["X-200 出厂检验报告样例"]
+      }
+    },
+    {
+      "id": "F09",
+      "question": "X-100 系列扭矩校准记录模板中，校准周期和校准点有哪些？",
+      "type": "直接查询/校准模板",
+      "mode": "query",
+      "expected": "12 个月；20%、40%、60%、80%、100% FS 五点",
+      "judge": {
+        "must_include_all": ["12 个月", "20%"],
+        "expected_sources": ["X-100 系列扭矩校准记录模板"]
+      }
+    },
+    {
+      "id": "F10",
+      "question": "电子装配防静电控制规范中，防静电腕带的电阻值和测试频率是多少？",
+      "type": "直接查询/ESD 规范",
+      "mode": "query",
+      "expected": "1 MΩ；每周测试一次",
+      "judge": {
+        "must_include_all": ["1 MΩ", "每周"],
+        "expected_sources": ["电子装配防静电控制规范"]
+      }
+    },
+    {
+      "id": "M01",
+      "question": "对比 X-100 与 X-100S 产品说明书：额定功率、防护等级、通信协议分别有什么差异？",
+      "type": "综合多份资料/型号对比",
+      "mode": "query",
+      "expected": "5 W vs 8 W；IP54 vs IP67；Bluetooth 5.0 vs Wi-Fi 6 + Bluetooth 5.2",
+      "judge": {
+        "must_include_all": ["5 W", "8 W", "IP54", "IP67", "Bluetooth 5.0", "Wi-Fi 6"],
+        "expected_sources_all": ["X-100 便携式扭矩校验仪产品说明书", "X-100S 便携式扭矩校验仪产品说明书"]
+      }
+    },
+    {
+      "id": "M02",
+      "question": "入库资料中有哪些已废止文件？它们分别被哪个版本替代？",
+      "type": "综合多份资料/废止文件",
+      "mode": "query",
+      "expected": "旧版校准记录模板 V0.9 与旧版 M-3 操作规程 V0.8，均标注已废止",
+      "judge": {
+        "must_include_all": ["已废止", "校准", "操作规程"],
+        "expected_sources_all": ["X-100 系列扭矩校准记录模板（旧版）", "M-3 半自动扭矩装配台操作规程（旧版）"]
+      }
+    },
+    {
+      "id": "M03",
+      "question": "M-3 Pro 的默认锁付扭矩是多少？QS-001 V2.1 对扭矩示值误差的要求是多少？",
+      "type": "综合多份资料/设备+质量",
+      "mode": "query",
+      "expected": "12.0 N·m；≤ ±0.4% FS",
+      "judge": {
+        "must_include_all": ["12.0", "±0.4%"],
+        "expected_sources_all": ["M-3 Pro 全自动扭矩装配台操作手册", "X-100 系列成品检验规范 V2.1"]
+      }
+    },
+    {
+      "id": "M04",
+      "question": "X-100S 的防护等级在产品说明书和 QS-001 V2.1 中分别是什么？两者是否一致？",
+      "type": "综合多份资料/产品+质量",
+      "mode": "query",
+      "expected": "均为 IP67，一致",
+      "judge": {
+        "must_include_all": ["IP67"],
+        "expected_sources_all": ["X-100S 便携式扭矩校验仪产品说明书", "X-100 系列成品检验规范 V2.1"]
+      }
+    },
+    {
+      "id": "M05",
+      "question": "X-100 的校准周期是多少？包装箱最多堆码几层？",
+      "type": "综合多份资料/校准+包装",
+      "mode": "query",
+      "expected": "12 个月；不超过 5 层",
+      "judge": {
+        "must_include_all": ["12 个月", "5 层"],
+        "expected_sources_all": ["X-100 系列扭矩校准记录模板", "X-100 系列包装与运输规范"]
+      }
+    },
+    {
+      "id": "C01",
+      "question": "X-100 与 X-100S 的额定功率相差多少瓦？",
+      "type": "易混淆型号/额定功率",
+      "mode": "query",
+      "expected": "X-100 为 5 W，X-100S 为 8 W，相差 3 W",
+      "judge": {
+        "must_include_all": ["3 W", "5 W", "8 W"],
+        "expected_sources_all": ["X-100 便携式扭矩校验仪产品说明书", "X-100S 便携式扭矩校验仪产品说明书"]
+      }
+    },
+    {
+      "id": "C02",
+      "question": "X-100S 是否支持 MQTT？它的防护等级和无线通信协议是什么？",
+      "type": "易混淆型号/通信",
+      "mode": "query",
+      "expected": "支持 MQTT；IP67；Wi-Fi 6 + Bluetooth 5.2",
+      "judge": {
+        "must_include_all": ["IP67", "Wi-Fi 6", "MQTT"],
+        "expected_sources": ["X-100S 便携式扭矩校验仪产品说明书"]
+      }
+    },
+    {
+      "id": "C03",
+      "question": "X-200 与 X-100 外观相似，它是便携式电池供电，还是台式 220 V 供电？",
+      "type": "易混淆型号/定位",
+      "mode": "query",
+      "expected": "台式 220 V 供电，IP20，非便携式",
+      "judge": {
+        "must_include_all": ["台式"],
+        "must_include_any": ["220 V", "220V"],
+        "expected_sources": ["X-200 台式多通道扭矩校验系统产品说明书"]
+      }
+    },
+    {
+      "id": "C04",
+      "question": "X-100 和 X-200 的扭矩量程分别是多少？",
+      "type": "易混淆型号/量程",
+      "mode": "query",
+      "expected": "X-100 为 0.5–100 N·m；X-200 为 5–2000 N·m",
+      "judge": {
+        "must_include_any": ["0.5–100", "0.5-100"],
+        "must_include_all": ["5–2000"],
+        "expected_sources_all": ["X-100 便携式扭矩校验仪产品说明书", "X-200 台式多通道扭矩校验系统产品说明书"]
+      }
+    },
+    {
+      "id": "C05",
+      "question": "X-100 与 X-100S 的通信协议有什么不同？",
+      "type": "易混淆型号/通信",
+      "mode": "query",
+      "expected": "X-100 为 Bluetooth 5.0；X-100S 为 Wi-Fi 6 + Bluetooth 5.2，支持 MQTT",
+      "judge": {
+        "must_include_all": ["Bluetooth 5.0", "Wi-Fi 6"],
+        "expected_sources_all": ["X-100 便携式扭矩校验仪产品说明书", "X-100S 便携式扭矩校验仪产品说明书"]
+      }
+    },
+    {
+      "id": "V01",
+      "question": "QS-001 V2.0 和 V2.1 对耐压测试的要求分别是什么？请注明版本和发布日期。",
+      "type": "版本冲突/耐压",
+      "mode": "query",
+      "expected": "V2.0（2025-03-10）1500 VAC/60 s；V2.1（2026-08-15）2000 VAC/60 s",
+      "judge": {
+        "must_include_all": ["V2.0", "V2.1", "1500", "2000", "2025-03-10", "2026-08-15"],
+        "expected_sources_all": ["X-100 系列成品检验规范 V2.0", "X-100 系列成品检验规范 V2.1"]
+      }
+    },
+    {
+      "id": "V02",
+      "question": "QS-001 V2.0 和 V2.1 对绝缘电阻的要求分别是什么？请注明版本和发布日期。",
+      "type": "版本冲突/绝缘电阻",
+      "mode": "query",
+      "expected": "V2.0（2025-03-10）≥100 MΩ；V2.1（2026-08-15）≥500 MΩ",
+      "judge": {
+        "must_include_all": ["V2.0", "V2.1", "100", "500", "2025-03-10", "2026-08-15"],
+        "expected_sources_all": ["X-100 系列成品检验规范 V2.0", "X-100 系列成品检验规范 V2.1"]
+      }
+    },
+    {
+      "id": "V03",
+      "question": "QS-001 V2.0 和 V2.1 对扭矩示值误差的要求分别是什么？请注明版本和发布日期。",
+      "type": "版本冲突/示值误差",
+      "mode": "query",
+      "expected": "V2.0（2025-03-10）±0.5% FS；V2.1（2026-08-15）±0.4% FS",
+      "judge": {
+        "must_include_all": ["V2.0", "V2.1", "±0.5", "±0.4", "2025-03-10", "2026-08-15"],
+        "expected_sources_all": ["X-100 系列成品检验规范 V2.0", "X-100 系列成品检验规范 V2.1"]
+      }
+    },
+    {
+      "id": "V04",
+      "question": "QS-001 V2.0 和 V2.1 对重复性的要求分别是什么？请注明版本和发布日期。",
+      "type": "版本冲突/重复性",
+      "mode": "query",
+      "expected": "V2.0（2025-03-10）≤0.3%；V2.1（2026-08-15）≤0.2%",
+      "judge": {
+        "must_include_all": ["V2.0", "V2.1", "0.3", "0.2", "2025-03-10", "2026-08-15"],
+        "expected_sources_all": ["X-100 系列成品检验规范 V2.0", "X-100 系列成品检验规范 V2.1"]
+      }
+    },
+    {
+      "id": "V05",
+      "question": "QS-001 当前现行版本是哪个？发布日期是什么？它替代了哪个版本？",
+      "type": "版本冲突/现行版本",
+      "mode": "query",
+      "expected": "V2.1，2026-08-15 发布，替代 V2.0",
+      "judge": {
+        "must_include_all": ["V2.1", "2026-08-15", "V2.0"],
+        "expected_sources_all": ["X-100 系列成品检验规范 V2.0", "X-100 系列成品检验规范 V2.1"]
+      }
+    },
+    {
+      "id": "N01",
+      "question": "X-900 的额定功率是多少？",
+      "type": "无答案/不存在型号",
+      "mode": "query",
+      "expected": "资料中仅有 X-900 型号名，没有额定功率，应说明资料不足",
+      "judge": {
+        "must_refuse": true,
+        "expected_sources": []
+      }
+    },
+    {
+      "id": "N02",
+      "question": "《环境试验细则》规定的盐雾试验持续时间是多少？",
+      "type": "无答案/缺失引用文件",
+      "mode": "query",
+      "expected": "资料只引用《环境试验细则》，没有该文件内容，应说明资料不足",
+      "judge": {
+        "must_refuse": true,
+        "expected_sources": []
+      }
+    },
+    {
+      "id": "N03",
+      "question": "资料中是否有 X-100 通过 IP68 认证的记录？",
+      "type": "无答案/未出现认证",
+      "mode": "query",
+      "expected": "资料只写 IP54，没有 IP68 认证记录，应说明资料不足",
+      "judge": {
+        "must_refuse": true,
+        "expected_sources": []
+      }
+    },
+    {
+      "id": "N04",
+      "question": "X-200 使用的 Wi-Fi 模块型号是什么？",
+      "type": "无答案/未出现部件",
+      "mode": "query",
+      "expected": "资料没有 X-200 的 Wi-Fi 模块型号，应说明资料不足",
+      "judge": {
+        "must_refuse": true,
+        "expected_sources": []
+      }
+    },
+    {
+      "id": "N05",
+      "question": "X-100 的欧盟 CE 认证编号是多少？",
+      "type": "无答案/未出现认证编号",
+      "mode": "query",
+      "expected": "资料没有 CE 认证编号，应说明资料不足",
+      "judge": {
+        "must_refuse": true,
+        "expected_sources": []
+      }
+    }
+  ]
+}
