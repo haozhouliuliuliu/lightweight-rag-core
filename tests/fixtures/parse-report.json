@@ -1,0 +1,219 @@
+{
+  "generated_at": "2026-10-19T12:14:28+08:00",
+  "docs_dir": "data/docs",
+  "chunking": {
+    "size": 500,
+    "overlap": 50
+  },
+  "summary": {
+    "documents": 22,
+    "parsed": 22,
+    "errors": 0,
+    "blocks": 230,
+    "chunks": 55,
+    "formats": {
+      "docx": 12,
+      "pdf": 10
+    }
+  },
+  "documents": [
+    {
+      "source_file": "data/docs/archive/STARLAN-M3-old-operation-procedure-v0.8-obsolete.pdf",
+      "format": "pdf",
+      "blocks": 1,
+      "characters": 539,
+      "chunks": 2,
+      "page_count": 1,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/bom/STARLAN-BOM-X100-v1.2.docx",
+      "format": "docx",
+      "blocks": 10,
+      "characters": 766,
+      "chunks": 2,
+      "page_count": null,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/bom/STARLAN-BOM-X200-v1.0.pdf",
+      "format": "pdf",
+      "blocks": 1,
+      "characters": 681,
+      "chunks": 2,
+      "page_count": 1,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/calibration/STARLAN-CAL-record-template-v0.9-obsolete.pdf",
+      "format": "pdf",
+      "blocks": 1,
+      "characters": 522,
+      "chunks": 2,
+      "page_count": 1,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/calibration/STARLAN-CAL-record-template-v1.0.docx",
+      "format": "docx",
+      "blocks": 14,
+      "characters": 598,
+      "chunks": 2,
+      "page_count": null,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/equipment/STARLAN-M3-Pro-operation-manual-v1.0.docx",
+      "format": "docx",
+      "blocks": 24,
+      "characters": 1074,
+      "chunks": 3,
+      "page_count": null,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/equipment/STARLAN-M3-operation-manual-v1.1.pdf",
+      "format": "pdf",
+      "blocks": 2,
+      "characters": 1251,
+      "chunks": 3,
+      "page_count": 2,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/equipment/STARLAN-equipment-cleaning-sop-v1.0.pdf",
+      "format": "pdf",
+      "blocks": 1,
+      "characters": 570,
+      "chunks": 2,
+      "page_count": 1,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/equipment/STARLAN-equipment-maintenance-procedure-v1.3.docx",
+      "format": "docx",
+      "blocks": 18,
+      "characters": 834,
+      "chunks": 2,
+      "page_count": null,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/packaging/STARLAN-PKG-001-packaging-transport-spec-v1.1.pdf",
+      "format": "pdf",
+      "blocks": 1,
+      "characters": 678,
+      "chunks": 2,
+      "page_count": 1,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/product/STARLAN-X100-product-manual-v1.2.docx",
+      "format": "docx",
+      "blocks": 32,
+      "characters": 1639,
+      "chunks": 4,
+      "page_count": null,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/product/STARLAN-X100S-product-manual-v1.2.docx",
+      "format": "docx",
+      "blocks": 30,
+      "characters": 1731,
+      "chunks": 4,
+      "page_count": null,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/product/STARLAN-X200-product-manual-v1.0.pdf",
+      "format": "pdf",
+      "blocks": 2,
+      "characters": 1563,
+      "chunks": 4,
+      "page_count": 2,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/quality/STARLAN-IQC-001-incoming-material-spec-v1.2.docx",
+      "format": "docx",
+      "blocks": 10,
+      "characters": 525,
+      "chunks": 2,
+      "page_count": null,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/quality/STARLAN-QS-001-inspection-spec-v2.0.pdf",
+      "format": "pdf",
+      "blocks": 2,
+      "characters": 1444,
+      "chunks": 4,
+      "page_count": 2,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/quality/STARLAN-QS-001-inspection-spec-v2.1.docx",
+      "format": "docx",
+      "blocks": 24,
+      "characters": 1459,
+      "chunks": 4,
+      "page_count": null,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/reports/STARLAN-FIR-X100-sample-v1.0.docx",
+      "format": "docx",
+      "blocks": 11,
+      "characters": 645,
+      "chunks": 2,
+      "page_count": null,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/reports/STARLAN-FIR-X200-sample-v1.0.pdf",
+      "format": "pdf",
+      "blocks": 1,
+      "characters": 650,
+      "chunks": 2,
+      "page_count": 1,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/safety/STARLAN-ESD-control-spec-v1.0.docx",
+      "format": "docx",
+      "blocks": 12,
+      "characters": 498,
+      "chunks": 1,
+      "page_count": null,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/safety/STARLAN-SAFE-001-assembly-safety-procedure-v1.1.pdf",
+      "format": "pdf",
+      "blocks": 2,
+      "characters": 857,
+      "chunks": 2,
+      "page_count": 2,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/safety/STARLAN-SAFE-002-electrical-test-safety-v1.0.docx",
+      "format": "docx",
+      "blocks": 17,
+      "characters": 629,
+      "chunks": 2,
+      "page_count": null,
+      "error": null
+    },
+    {
+      "source_file": "data/docs/supplier/STARLAN-SQA-001-supplier-quality-agreement-v1.1.docx",
+      "format": "docx",
+      "blocks": 14,
+      "characters": 508,
+      "chunks": 2,
+      "page_count": null,
+      "error": null
+    }
+  ]
+}
