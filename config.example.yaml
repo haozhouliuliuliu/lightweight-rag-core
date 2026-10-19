@@ -16,15 +16,27 @@ embedding:
   provider: dashscope-openai-compatible
   base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
   model: text-embedding-v4
+  dimensions: 1024
   api_key_env: DASHSCOPE_API_KEY
+  batch_size: 10
+  timeout_seconds: 60
+  max_retries: 3
 
 llm:
   provider: dashscope-openai-compatible
   base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
   model: qwen-plus
   api_key_env: DASHSCOPE_API_KEY
+  timeout_seconds: 90
+  temperature: 0
+  max_tokens: 1200
 
 vector_store:
   type: chroma
   persist_dir: data/chroma
   collection: lightweight-rag-core
+
+retrieval:
+  top_k: 5
+  answer_top_k: 10
+  query_backend: hnsw
