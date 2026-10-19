@@ -1,0 +1,26 @@
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Local runtime data (not source docs)
+data/chroma/
+data/index/
+*.sqlite3
+
+# Test scratch
+tests/results/*.tmp
+tests/results/*.log

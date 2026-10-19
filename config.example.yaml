@@ -1,0 +1,30 @@
+project:
+  name: lightweight-rag-core
+  version: 0.1.0
+
+paths:
+  docs_dir: data/docs
+  fixtures_dir: tests/fixtures
+  results_dir: tests/results
+  chroma_dir: data/chroma
+
+chunking:
+  size: 500
+  overlap: 50
+
+embedding:
+  provider: dashscope-openai-compatible
+  base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+  model: text-embedding-v4
+  api_key_env: DASHSCOPE_API_KEY
+
+llm:
+  provider: dashscope-openai-compatible
+  base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+  model: qwen-plus
+  api_key_env: DASHSCOPE_API_KEY
+
+vector_store:
+  type: chroma
+  persist_dir: data/chroma
+  collection: lightweight-rag-core
