@@ -1,0 +1,145 @@
+{
+  "generated_at": "2026-10-19T14:21:47+08:00",
+  "model": "text-embedding-v4",
+  "dimensions": 1024,
+  "docs": 22,
+  "chunks": 55,
+  "collection_count": 55,
+  "query_backend": "hnsw",
+  "elapsed_seconds": 53.69,
+  "documents": [
+    {
+      "doc_id": "A01",
+      "title": "X-100 便携式扭矩校验仪产品说明书",
+      "source_file": "data/docs/product/STARLAN-X100-product-manual-v1.2.docx",
+      "chunks": 4
+    },
+    {
+      "doc_id": "A02",
+      "title": "X-100S 便携式扭矩校验仪产品说明书",
+      "source_file": "data/docs/product/STARLAN-X100S-product-manual-v1.2.docx",
+      "chunks": 4
+    },
+    {
+      "doc_id": "A03",
+      "title": "X-200 台式多通道扭矩校验系统产品说明书",
+      "source_file": "data/docs/product/STARLAN-X200-product-manual-v1.0.pdf",
+      "chunks": 4
+    },
+    {
+      "doc_id": "B04",
+      "title": "X-100 系列成品检验规范 V2.0",
+      "source_file": "data/docs/quality/STARLAN-QS-001-inspection-spec-v2.0.pdf",
+      "chunks": 4
+    },
+    {
+      "doc_id": "B05",
+      "title": "X-100 系列成品检验规范 V2.1",
+      "source_file": "data/docs/quality/STARLAN-QS-001-inspection-spec-v2.1.docx",
+      "chunks": 4
+    },
+    {
+      "doc_id": "C06",
+      "title": "M-3 半自动扭矩装配台操作手册",
+      "source_file": "data/docs/equipment/STARLAN-M3-operation-manual-v1.1.pdf",
+      "chunks": 3
+    },
+    {
+      "doc_id": "C07",
+      "title": "M-3 Pro 全自动扭矩装配台操作手册",
+      "source_file": "data/docs/equipment/STARLAN-M3-Pro-operation-manual-v1.0.docx",
+      "chunks": 3
+    },
+    {
+      "doc_id": "C08",
+      "title": "M-3 / M-3 Pro 扭矩装配台维护规程",
+      "source_file": "data/docs/equipment/STARLAN-equipment-maintenance-procedure-v1.3.docx",
+      "chunks": 2
+    },
+    {
+      "doc_id": "D09",
+      "title": "装配工位安全操作规程",
+      "source_file": "data/docs/safety/STARLAN-SAFE-001-assembly-safety-procedure-v1.1.pdf",
+      "chunks": 2
+    },
+    {
+      "doc_id": "D10",
+      "title": "电气测试安全操作规程",
+      "source_file": "data/docs/safety/STARLAN-SAFE-002-electrical-test-safety-v1.0.docx",
+      "chunks": 2
+    },
+    {
+      "doc_id": "D11",
+      "title": "X-100 整机物料清单",
+      "source_file": "data/docs/bom/STARLAN-BOM-X100-v1.2.docx",
+      "chunks": 2
+    },
+    {
+      "doc_id": "D12",
+      "title": "X-200 整机物料清单",
+      "source_file": "data/docs/bom/STARLAN-BOM-X200-v1.0.pdf",
+      "chunks": 2
+    },
+    {
+      "doc_id": "D13",
+      "title": "X-100 系列扭矩校准记录模板",
+      "source_file": "data/docs/calibration/STARLAN-CAL-record-template-v1.0.docx",
+      "chunks": 2
+    },
+    {
+      "doc_id": "D14",
+      "title": "X-100 系列扭矩校准记录模板（旧版）",
+      "source_file": "data/docs/calibration/STARLAN-CAL-record-template-v0.9-obsolete.pdf",
+      "chunks": 2
+    },
+    {
+      "doc_id": "D15",
+      "title": "X-100 系列包装与运输规范",
+      "source_file": "data/docs/packaging/STARLAN-PKG-001-packaging-transport-spec-v1.1.pdf",
+      "chunks": 2
+    },
+    {
+      "doc_id": "D16",
+      "title": "X-100 出厂检验报告样例",
+      "source_file": "data/docs/reports/STARLAN-FIR-X100-sample-v1.0.docx",
+      "chunks": 2
+    },
+    {
+      "doc_id": "D17",
+      "title": "X-200 出厂检验报告样例",
+      "source_file": "data/docs/reports/STARLAN-FIR-X200-sample-v1.0.pdf",
+      "chunks": 2
+    },
+    {
+      "doc_id": "D18",
+      "title": "关键物料来料检验规范",
+      "source_file": "data/docs/quality/STARLAN-IQC-001-incoming-material-spec-v1.2.docx",
+      "chunks": 2
+    },
+    {
+      "doc_id": "D19",
+      "title": "M-3 系列装配台清洁规程",
+      "source_file": "data/docs/equipment/STARLAN-equipment-cleaning-sop-v1.0.pdf",
+      "chunks": 2
+    },
+    {
+      "doc_id": "D20",
+      "title": "电子装配防静电控制规范",
+      "source_file": "data/docs/safety/STARLAN-ESD-control-spec-v1.0.docx",
+      "chunks": 1
+    },
+    {
+      "doc_id": "D21",
+      "title": "M-3 半自动扭矩装配台操作规程（旧版）",
+      "source_file": "data/docs/archive/STARLAN-M3-old-operation-procedure-v0.8-obsolete.pdf",
+      "chunks": 2
+    },
+    {
+      "doc_id": "D22",
+      "title": "关键物料供应商质量协议",
+      "source_file": "data/docs/supplier/STARLAN-SQA-001-supplier-quality-agreement-v1.1.docx",
+      "chunks": 2
+    }
+  ],
+  "errors": []
+}
