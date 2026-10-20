@@ -2,7 +2,7 @@
 
 ## 1. 测试集来源
 
-`questions.full.json` 与项目一 **enterprise-rag-kb** 的 30 题测试集原样一致：
+`questions.full.json` 与enterprise-rag-kb **enterprise-rag-kb** 的 30 题测试集原样一致：
 
 - 来源提交：`4a2adb3b2b871fe52ddb4024c806e197725cda1a`
 - SHA-256：`6d90b7326168b7ef267a6eb64a299f63b6b0a740dbad4dc8e87a5d66fb75489e`
@@ -49,16 +49,16 @@
 
 - `tests/fixtures/parse-report.json`：22 份文档解析/切分统计；
 - `tests/fixtures/chunks.jsonl`：55 个 chunk 的文本与元数据；
-- `tests/results/m1-parse-spotcheck.md`：3 chunk 人工抽查；
-- `tests/results/m2-smoke.md`：真实 embedding + Chroma smoke；
-- `tests/results/m2-index-report.json`：索引统计；
-- `tests/results/m3-answer-trace.md`：单题全链路 trace；
-- `tests/results/m4-lifecycle.md`：新增/删除/修改/重索引；
-- `tests/results/m4-restart.md`：新进程读取持久化 Chroma；
-- `tests/results/m4-failures.md`：格式、空文档、401 失败；
+- `tests/results/parse-spotcheck.md`：3 chunk 人工抽查；
+- `tests/results/index-smoke.md`：真实 embedding + Chroma smoke；
+- `tests/results/index-report.json`：索引统计；
+- `tests/results/answer-trace.md`：单题全链路 trace；
+- `tests/results/document-lifecycle.md`：新增/删除/修改/重索引；
+- `tests/results/restart-persistence.md`：新进程读取持久化 Chroma；
+- `tests/results/failure-handling.md`：格式、空文档、401 失败；
 - `tests/results/eval-*.json/.md`：30 题评测原始结果；
-- `tests/results/m5-final-summary.md`：最终指标、失败案例与限制；
-- `tests/results/m5-clean-install.md`：项目外干净 venv 复现。
+- `tests/results/final-summary.md`：最终指标、失败案例与限制；
+- `tests/results/clean-install.md`：项目外干净 venv 复现。
 
 ## 5. 运行
 

@@ -1,17 +1,26 @@
 # lightweight-rag-core
 
-用 Python 自行组装完整 RAG 链路的轻量项目：
+用 Python 自行组装完整 RAG 链路：
 
 **解析 → 切分 → 真实 Embedding → Chroma → 检索 → qwen-plus → 可核对引用**
 
-> 项目二不依赖 RAGFlow/Dify 等封装产品。项目一负责部署/验证成熟 RAG 产品；本项目负责证明自己能组装并验证 RAG 核心技术链路。
->
-> 测试语料与 30 道题与项目一 **enterprise-rag-kb** 同源；题目原样复用，不修改题目/答案/判定规则。
+> 不依赖 RAGFlow / Dify 等封装产品，重点是把「文档怎么进来、片段怎么检索、回答怎么引用」的每一步写清楚、可测试、可复现。
 
-## 1. 最终结果
+## 业务场景
 
-| 指标 | 结果 | 要求 |
-| --- | --- | --- |
+企业要做知识库问答时，常见的两个选择是：
+
+1. 直接采购成熟 RAG 产品，快速上线；
+2. 自己组装链路，按企业文档格式和权限要求做定制。
+
+这个项目对应第 2 条：用 22 份虚构企业文档，把解析、切分、向量化、检索、回答、引用和拒答串成一条可运行、可评测的链路。它适合用来评估“自建 RAG 需要控制哪些环节”，也可以作为企业知识库 PoC 的代码骨架。
+
+评测语料与 30 道题和 [enterprise-rag-kb](https://github.com/haozhouliuliuliu/enterprise-rag-kb) 同源，题目与判定规则不改，便于对照“成熟产品”和“自建链路”的差异。
+
+## 最终结果
+
+| 指标 | 结果 | 门槛 |
+|---|---:|---:|
 | 有答案 25 题 Top-5 检索 | **23/25 = 92%** | ≥70% |
 | 有答案 25 题引用有效性 | **25/25 = 100%** | ≥80% |
 | 无答案 5 题正确拒答 | **5/5 = 100%** | ≥4/5 |
@@ -19,19 +28,41 @@
 | 编造 / 错误 | **0 / 0** | 0 |
 | pytest | **37 passed** | ≥10 |
 
-与项目一对照：项目一 Top-5 21/25（84%）、来源 22/25（88%）、无答案 5/5。项目二不追求超过项目一，重点是链路真实、引用可核对。
+结果只代表当前虚构语料、题集、embedding 和模型配置，不代表生产环境准确率。
 
-## 2. M1–M5 状态
+## 技术方案
 
-| 里程碑 | 内容 | 状态 |
-| --- | --- | --- |
-| M1 | PDF/DOCX/TXT 解析、500/50 切分、元数据/错误、解析报告、3 chunk 抽查 | ✅ |
-| M2 | 真实 `text-embedding-v4`、Chroma 持久化、新增/删除/重建索引 | ✅ |
-| M3 | Top-K 检索、上下文组装、qwen-plus、`[n]` 引用、trace | ✅ |
-| M4 | 新增/删除/修改/重索引、重启持久化、异常/超时/401、不伪造成功 | ✅ |
-| M5 | 项目一 30 题、判定规则、评测报告、干净环境复现、文档/安全 | ✅ |
+| 环节 | 实现 |
+|---|---|
+| 解析 | PDF 按页；DOCX 段落/表格；TXT 段落；每个 block 带 `source_file`，PDF 带 page |
+| 切分 | 代码控制 500/50；保留 `chunk_id`、page、字符区间 |
+| Embedding | 百炼 `text-embedding-v4`，1024 维；批处理、重试、维度校验 |
+| 向量库 | Chroma `PersistentClient`，cosine；稳定 ID `doc_id:chunk_id` |
+| 检索 | Top-5 为评测口径；回答用 Top-10 + 同文档 sibling 扩展 |
+| 回答 | `qwen-plus`，temperature=0；强制 `[n]` 引用 |
+| 引用 | `[n]` 映射到真实 `doc_title/source_file/chunk_id/page`；非法编号判失败 |
+| 生命周期 | 新增/删除/修改/重建索引；删除按 `doc_id` 清理 Chroma |
+| 失败处理 | 缺 key/401/超时/空文档/不支持格式明确失败，不伪造成功 |
 
-## 3. 目录
+## 架构
+
+```mermaid
+flowchart LR
+  D[PDF / DOCX / TXT] --> P[parser.py]
+  P --> C[chunker.py<br/>500 / 50]
+  C --> E[text-embedding-v4<br/>1024d]
+  E --> V[(Chroma<br/>PersistentClient)]
+  Q[问题] --> QE[问题 Embedding]
+  QE --> R[Retriever<br/>Top-5]
+  V --> R
+  R --> X[Top-10 + sibling]
+  X --> L[qwen-plus]
+  Q --> L
+  L --> A[回答 + [n] 引用]
+  A --> T[trace / 评测报告]
+```
+
+## 目录
 
 ```text
 lightweight-rag-core/
@@ -51,28 +82,17 @@ lightweight-rag-core/
 │   ├── test_*.py          # 37 个测试
 │   ├── questions.full.json
 │   ├── fixtures/          # parse-report、chunks、测试文档
-│   └── results/           # M1–M5 证据
-├── data/docs/             # 22 份同源虚构文档 + manifest
-├── scripts/
-│   ├── build_index.py
-│   ├── manage_docs.py
-│   ├── ask.py
-│   ├── evaluate.py
-│   └── m2/m3/m4/m5 证据脚本
-├── docs/
-│   ├── architecture.md
-│   ├── deployment.md
-│   └── security.md
+│   └── results/           # 验证记录
+├── data/docs/             # 22 份虚构文档 + manifest
+├── scripts/               # 建索引 / 文档管理 / 问答 / 评测 / 证据脚本
+├── docs/                  # 架构 / 部署 / 安全
 ├── config.example.yaml
-├── .env.example
-├── requirements.txt
-└── README.md
+└── .env.example
 ```
 
-## 4. 快速开始
+## 快速开始
 
 ```powershell
-# 虚拟环境（.venv 已 gitignore）
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m pip check
@@ -90,54 +110,32 @@ copy .env.example .env
 # 单题
 .\.venv\Scripts\python.exe scripts\ask.py "X-100 的额定功率是多少？"
 
-# 30 题
+# 30 题评测
 .\.venv\Scripts\python.exe scripts\evaluate.py
 ```
 
 完整命令见 [docs/deployment.md](docs/deployment.md)。
 
-## 5. 关键设计
+## 可复用产出
 
-- **解析**：PDF 按页；DOCX 段落/表格；TXT 段落；每个 block 带 `source_file`，PDF 带 page；
-- **切分**：项目代码控制 500/50；chunk_id、page、字符区间；
-- **Embedding**：百炼 `text-embedding-v4`，1024 维；批处理/重试/维度校验；
-- **Chroma**：`PersistentClient`，cosine；稳定 ID `doc_id:chunk_id`；
-- **检索**：Top-5 为评测口径；回答用 Top-10 + 同文档 sibling 扩展，弥补 500 字切分把表格拆开的问题；
-- **回答**：`qwen-plus`，temperature=0；强制 `[n]` 引用；
-- **引用**：`[n]` 映射到真实 `doc_title/source_file/chunk_id/page`；非法编号判失败，不自动补来源；
-- **生命周期**：新增/删除/修改/重索引；删除按 `doc_id` 清理 Chroma；
-- **异常**：缺 key/401/超时/空文档/不支持格式均明确失败，不伪装成功。
+- 一套从解析到引用的最小 RAG 代码骨架；
+- 22 份虚构文档 + 30 题固定评测集 + 判定脚本；
+- 文档新增/删除/重建索引与重启持久化验证；
+- 缺 key、401、超时、空文档等失败路径的明确处理；
+- 引用编号与真实来源映射，便于审计回答依据。
 
-## 6. 证据
+## 已知限制
 
-- M1：[m1-parse-spotcheck.md](tests/results/m1-parse-spotcheck.md)
-- M2：[m2-smoke.md](tests/results/m2-smoke.md)、[m2-index-report.json](tests/results/m2-index-report.json)
-- M3：[m3-answer-trace.md](tests/results/m3-answer-trace.md)
-- M4：[m4-lifecycle.md](tests/results/m4-lifecycle.md)、[m4-restart.md](tests/results/m4-restart.md)、[m4-failures.md](tests/results/m4-failures.md)
-- M5：[m5-final-summary.md](tests/results/m5-final-summary.md)、[m5-clean-install.md](tests/results/m5-clean-install.md)
-- 30 题原始结果：[eval-20261019-150357.md](tests/results/eval-20261019-150357.md)
+- 单机、单进程验证，不含企业级权限、多租户、高可用；
+- 表格被 500 字切分后可能丢结构，需要 sibling 扩展兜底；
+- 相似型号/版本对比仍可能漏检；
+- 评测集规模有限，不能代表所有企业语料；
+- 外部模型调用会发送问题与检索文本，只应使用获授权的数据。
 
-## 7. 安全与数据
+## 安全
 
-- key 只从环境变量或本地 `.env`；
-- `.env`、`config.yaml`、`data/chroma` 均 gitignore；
-- chunk 文本和用户问题会发送到阿里云百炼；
-- 只使用虚构资料，禁止真实企业数据；
-- 详见 [docs/security.md](docs/security.md)。
+API key 只从环境变量或本机 `.env` 读取；`.env`、`config.yaml`、`data/chroma` 均已忽略。仓库不包含真实密钥。详见 [docs/security.md](docs/security.md)。
 
-## 8. 已知限制
+## 许可
 
-1. **Top-5 仍漏 2 题**：M05（校准+包装混合）、V04（V2.0/V2.1 同时覆盖）；最终回答通过扩展上下文命中，但 Top-5 指标保留失败。
-2. **表格切分**：500 字切分把 PDF 表格拆开，依赖 sibling 扩展；未做表格结构还原。
-3. **未做 rerank/查询拆分**：当前 92% Top-5，后续可提升。
-4. **Chroma HNSW**：本机无 AVX2，但当前版本正常；保留 `brute_force` 回退。
-5. **无 Web UI**：CLI 是交付接口，符合“简单界面或 API”范围。
-6. **非生产级**：单机、无权限/多租户/审计/限流。
-7. **虚构数据**：文档全部虚构，不用于真实生产决策。
-
-## 9. 与项目一关系
-
-- 同一套 22 份虚构文档（SHA-256 一致）；
-- 同一套 30 题（SHA-256 `6d90b732...` 一致）；
-- 项目一使用 AnythingLLM；项目二使用 Python + Chroma + 百炼；
-- 两套结果可横向对照，但项目二不修改题目以追求更高分。
+[MIT](LICENSE)

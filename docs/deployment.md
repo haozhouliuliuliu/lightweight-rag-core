@@ -14,7 +14,7 @@
 ## 2. 安装（干净环境可复现）
 
 ```powershell
-cd C:\RAG库\lightweight-rag-core
+cd lightweight-rag-core
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install --upgrade pip
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
@@ -23,7 +23,7 @@ python -m venv .venv
 ```
 
 实测：`pytest` **37 passed**；项目外干净 venv 同样 37 passed，见
-`tests/results/m5-clean-install.md`。
+`tests/results/clean-install.md`。
 
 ## 3. 配置
 
@@ -52,7 +52,7 @@ copy .env.example .env
 输出：
 
 - `data/chroma/`：本地持久化索引（gitignored）；
-- `tests/results/m2-index-report.json`：22 docs / 55 chunks / 1024 维 / count=55。
+- `tests/results/index-report.json`：22 docs / 55 chunks / 1024 维 / count=55。
 
 小规模冒烟：
 
